@@ -45,42 +45,27 @@ public class SeckillServiceTest {
         System.out.println(seckill);
     }
 
-    @Test
-    public void exportSeckillUrl() throws Exception {
-        long id=1000;
-        Exposer exposer=seckillService.exportSeckillUrl(id);
-        System.out.println(exposer);
 
-    }
-
-    @Test
-    public void executeSeckill() throws Exception {
-        long id=1000;
-        long phone=13502171122L;
-        String md5="e83eef2cc6b033ca0848878afc20e80d";
-        SeckillExecution execution=seckillService.executeSeckill(id,phone,md5);
-        System.out.println(execution);
-    }
     //测试代码完整逻辑，注意可重复执行
     @Test
     public void testSeckillLogic() throws Exception{
         long id=1001;
         Exposer exposer=seckillService.exportSeckillUrl(id);
         if(exposer.isExposed()){
-           // logger.info("exposer={}",exposer);
+            logger.info("exposer={}",exposer);
             long phone=13502171122L;
             String md5="e83eef2cc6b033ca0848878afc20e80d";
             try{
                 SeckillExecution execution=seckillService.executeSeckill(id,phone,md5);
-             //   logger.info("result={}",execution);
+               logger.info("result={}",execution);
             }catch (RepeatKillException e){
-              //  logger.error(e.getMessage());
+                logger.error(e.getMessage());
             }catch (SeckillCloseException e){
-               // logger.error(e.getMessage());
+               logger.error(e.getMessage());
             }
         }else {
             //秒杀未开启
-          //  logger.warn("exposer={}",exposer);
+            logger.warn("exposer={}",exposer);
         }
 
     }
