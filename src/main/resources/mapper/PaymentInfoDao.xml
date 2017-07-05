@@ -2,16 +2,19 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.seckill.dao.SeckillDao">
+<mapper namespace="com.zjyt.dataDeal.dao.PaymentInfoDao">
 
 
     <select id="queryAll" resultType="PaymentInfo">
-        select seckill_id,name,number,start_time,end_time,create_time
-        from seckill
-        order by create_time desc
+        select *
+        from payment_info
+    </select>
+    <select id="queryPage" resultType="PaymentInfo">
+        select *
+        from payment_info
+
         limit #{offset},#{limit}
     </select>
-
 
 
 </mapper>

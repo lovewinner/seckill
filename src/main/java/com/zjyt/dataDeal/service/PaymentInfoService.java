@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface PaymentInfoService {
     List<PaymentInfo> queryAll();
+    List<PaymentInfo> queryPage(int offset,int limit);
+
 }
