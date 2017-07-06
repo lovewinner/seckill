@@ -8,16 +8,20 @@
         http://www.springframework.org/schema/tx/spring-tx.xsd"
 >
     <!--扫描service包下所有使用注解的类型-->
-    <context:component-scan base-package="com.zjyt.dataDeal.service"/>
+    <context:component-scan base-package="com.zjyt.*.service"/>
 
     <!--配置事务管理器-->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+    <bean id="transactionManager1" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <!--注入数据库连接池-->
-        <property name="dataSource" ref="dataSource"/>
+        <property name="dataSource" ref="dataSource1"/>
+    </bean>
+    <bean id="transactionManager2" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <!--注入数据库连接池-->
+        <property name="dataSource" ref="dataSource2"/>
     </bean>
     <!--配置基于注解的声明式事务
         默认使用注解来管理事务行为
     -->
-    <tx:annotation-driven transaction-manager="transactionManager"/>
-
+    <tx:annotation-driven transaction-manager="transactionManager1"/>
+    <tx:annotation-driven transaction-manager="transactionManager2"/>
 </beans>

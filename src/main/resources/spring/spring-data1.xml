@@ -15,11 +15,11 @@
 
 
     <context:property-placeholder location="classpath:jdbc.properties"/>
-    <bean id="dataSource1" class="com.mchange.v2.c3p0.ComboPooledDataSource"          >
-        <property name="driverClass" value="${jdbc.driver}"></property>
-        <property name="jdbcUrl" value="${jdbc.url}"></property>
-        <property name="user" value="${jdbc.username}"></property>
-        <property name="password" value="${jdbc.password}"></property>
+    <bean id="dataSource2" class="com.mchange.v2.c3p0.ComboPooledDataSource"          >
+        <property name="driverClass" value="${jdbc2.driver}"></property>
+        <property name="jdbcUrl" value="${jdbc2.url}"></property>
+        <property name="user" value="${jdbc2.username}"></property>
+        <property name="password" value="${jdbc2.password}"></property>
 
 
         <property name="maxPoolSize" value="30"></property>
@@ -32,23 +32,20 @@
         <property name="acquireRetryAttempts" value="2"></property>
     </bean>
 
-    <!-- 对数据源进行事务管理 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource1" />
-    </bean>
+
 
     <!-- 配置SqlSessionFactoryBean -->
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource1" />
+    <bean id="sqlSessionFactory2" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource2" />
 
         <!-- mapper和resultmap配置路径 -->
         <property name="mapperLocations">
             <list>
-                <value>classpath:mapper1/*Mapper.xml</value>
+                <value>classpath:mapper2/*Mapper.xml</value>
             </list>
         </property>
     </bean>
 
-    <tx:annotation-driven  transaction-manager="transactionManager" />
+    <tx:annotation-driven  transaction-manager="transactionManager2" />
 
 </beans>

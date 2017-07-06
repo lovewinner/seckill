@@ -1,9 +1,11 @@
 package com.zjyt.dataDeal.entity;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+import java.io.Serializable;
 import java.util.Date;
 
 
-public class PaymentInfo {
+public class PaymentInfo implements Serializable{
 
     private String id;
     private String htnum;
@@ -30,15 +32,7 @@ public class PaymentInfo {
 
     @Override
     public String toString() {
-        return "PaymentInfo{" +
-                "id='" + id + '\'' +
-                ", htnum='" + htnum + '\'' +
-                ", bkmoney=" + bkmoney +
-                ", bktime=" + bktime +
-                ", bkcs=" + bkcs +
-                ", fksm='" + fksm + '\'' +
-                ", skunit='" + skunit + '\'' +
-                '}';
+       return ToStringBuilder.reflectionToString(this);
     }
 
     public String getId() {
